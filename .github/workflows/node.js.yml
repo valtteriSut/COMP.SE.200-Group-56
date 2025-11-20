@@ -5,7 +5,7 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "main", "ci-fix","coveralls-setup", "coveralls"]
+    branches: [ "main", "ci-fix", "coveralls-setup", "coveralls"]
   pull_request:
     branches: [ "main" ]
 
@@ -32,7 +32,22 @@ jobs:
     - name: Run tests and generate coverage report
       run: npm run coverage 
 
-    - name: Upload coverage to Coveralls
+
+    - name: Upload coverage to Coveralls (Parallel Step)
       uses: coverallsapp/github-action@v2
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
+        flag-name: node-${{ matrix.node-version }}
+
+        parallel: true
+
+  finish:
+    name: Finalize Coveralls Report
+    runs-on: ubuntu-latest
+    needs: test_and_coverage
+    steps:
+    - name: Send 'Done' signal to Coveralls
+      uses: coverallsapp/github-action@v2
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        parallel-finished: true
