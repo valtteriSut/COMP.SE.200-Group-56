@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage"
+    "test": "jest",
+    "coverage": "jest --coverage --coverageReporters=lcov",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -19,9 +21,12 @@
   },
   "homepage": "https://github.com/valtteriSut/COMP.SE.200-Group-56#readme",
   "devDependencies": {
+    "coveralls": "^3.1.1",
     "jest": "^30.2.0"
   },
-  "dependencies": {
-    "coveralls": "^3.1.1"
+  "jest": {
+  "collectCoverage": true,
+  "collectCoverageFrom": ["src/**/*.js", "!src/ignore.js"],
+  "coverageReporters": ["lcov"]
   }
 }
