@@ -34,3 +34,9 @@ jobs:
 
     - name: Run tests
       run: npm test
+
+    - name: make test-coverage
+      run: make test-coverage
+
+    - name: Coveralls
+      uses: coverallsapp/github-action@v2
