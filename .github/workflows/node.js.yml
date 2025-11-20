@@ -5,7 +5,7 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "main", "ci-fix","coveralls-setup" ]
+    branches: [ "main", "ci-fix","coveralls-setup", "coveralls"]
   pull_request:
     branches: [ "main" ]
 
