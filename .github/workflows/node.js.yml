@@ -8,44 +8,31 @@ on:
     branches: [ "main", "ci-fix","coveralls-setup" ]
   pull_request:
     branches: [ "main" ]
+
 jobs:
-  test:
+  test_and_coverage:
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
-        test_number:
-          - 1
-          - 2
-    strategy:
-      matrix:
-        node-version: [18.x]
+        node-version: [18.x, 20.x] 
+
     steps:
     - uses: actions/checkout@v4
-    - name: Install Node.js
+    
+    - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
+        cache: 'npm' 
 
+    - name: Install dependencies
+      run: npm ci 
 
-    - name: npm install
-      run: npm install
+    - name: Run tests and generate coverage report
+      run: npm run coverage 
 
-    - name: Test ${{ matrix.test_number }}
-      run: make test-coverage-${{ matrix.test_number }}
-    - name: Coveralls Parallel
+    - name: Upload coverage to Coveralls
       uses: coverallsapp/github-action@v2
       with:
-        flag-name: run-${{ join(matrix.*, '-') }}
-        parallel: true
-
-  finish:
-    needs: test
-    if: ${{ always() }}
-    runs-on: ubuntu-latest
-    steps:
-    - name: Coveralls Finished
-      uses: coverallsapp/github-action@v2
-      with:
-        parallel-finished: true
-        carryforward: "run-1,run-2"
+        github-token: ${{ secrets.GITHUB_TOKEN }}
