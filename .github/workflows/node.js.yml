@@ -31,7 +31,7 @@ jobs:
     - name: Run tests and generate coverage report
       run: npm run coverage 
     - name: Run tests with coverage
-      run: npm test -- --coverage
+      run:  npm test -- --coverage
     - name: Upload coverage to Coveralls (Parallel Step)
       uses: coverallsapp/github-action@v2
       with:
