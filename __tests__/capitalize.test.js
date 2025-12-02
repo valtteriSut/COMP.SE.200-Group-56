@@ -48,9 +48,15 @@ test('capitalize toimii unicode-kirjaimilla', () => {
   expect(capitalize('äiti')).toBe('Äiti');
 });
 
-// Ei kavenneta whitespacea, joten tulos on sama
+
 test('capitalize ei poista whitespacea alusta', () => {
   expect(capitalize('  hello')).toBe('  hello');
+});
+
+test("capitalize käsittelee arrayn ja kutsuu toString array-haaran", () => {
+  const input = ["hello", "world"];  
+  const result = capitalize(input);
+  expect(result).toBe("Hello,world");
 });
 
 
