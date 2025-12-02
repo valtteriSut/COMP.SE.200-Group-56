@@ -28,13 +28,10 @@ jobs:
 
     - name: Install dependencies
       run: npm ci 
-    - name: Run tests with coverage
-      run: npm test -- --coverage
     - name: Run tests and generate coverage report
       run: npm run coverage 
-    - name: Check coverage file
-      run: cat coverage/lcov.info
-
+    - name: Run tests with coverage
+      run: npm test -- --coverage
     - name: Upload coverage to Coveralls (Parallel Step)
       uses: coverallsapp/github-action@v2
       with:
