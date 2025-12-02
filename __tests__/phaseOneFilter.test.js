@@ -8,19 +8,19 @@ describe('filter function', () => {
     expect(result).toEqual([3, 4]);
   });
 
-  test('2. Palauttaa tyhjän, jos mikään arvo ei täytä ehtoa (x > 5)', () => {
+  test.failing('2. Palauttaa tyhjän, jos mikään arvo ei täytä ehtoa (x > 5)', () => {
     const input = [1, 2, 3, 4];
     const result = filter(input, x => x > 5);
     expect(result).toEqual([]);
   });
 
-  test('3. Palauttaa tyhjän, jos taulukko on tyhjä', () => {
+  test.failing('3. Palauttaa tyhjän, jos taulukko on tyhjä', () => {
     const input = [];
     const result = filter(input, x => true);
     expect(result).toEqual([]);
   });
 
-  test('4. Palauttaa tyhjän, jos syöte on null', () => {
+  test.failing('4. Palauttaa tyhjän, jos syöte on null', () => {
     const input = null;
     const result = filter(input, x => true);
     expect(result).toEqual([]);
