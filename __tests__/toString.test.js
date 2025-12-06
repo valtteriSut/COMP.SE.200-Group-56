@@ -1,6 +1,6 @@
 import toString from "../src/toString";
 
-describe("toString", () => {
+describe("toString funktio", () => {
     test('Numero ja String tyyppejä', () => {
         expect(toString(['1',1,'-1',-1])).toBe('1,1,-1,-1')
     });

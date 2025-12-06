@@ -1,6 +1,6 @@
 import reduce from '../src/reduce.js';
 
-describe("reduce", () => {
+describe("reduce funktio", () => {
     test('Positiiviset luvut', () => {
         expect(reduce([1, 2, 3], (sum, n) => sum + n, 0)).toBe(6);
     });

@@ -9,7 +9,7 @@ function addOne(n) {
 }
 
 
-describe("map", () => {
+describe("map funktio", () => {
 
     test('Erilaisten numeroiden testaaminen', () => {
         expect(map([1,-2,0.233], addOne)).toMatchObject([2,-1,1.233]);
