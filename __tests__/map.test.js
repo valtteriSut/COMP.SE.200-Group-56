@@ -18,7 +18,12 @@ describe("map funktio", () => {
     test('null arvon testaaminen', () => {
         expect(map([null], addOne)).toMatchObject([1]);
     });
-    
+    test('tyhjän listan testaaminen', () => {
+        expect(map([], addOne)).toMatchObject([]);
+    });
+    test('null arvon testaaminen ei listan sisällä', () => {
+        expect(map(null, addOne)).toMatchObject([]);
+    });
     test('String tyypin testaaminen', () => {
         expect(map(['1', 1], addOne)).toMatchObject([2,2]);
     });
