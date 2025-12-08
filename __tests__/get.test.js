@@ -19,7 +19,7 @@ describe("get funktio", () => {
     });
 
     test('satunnaisia desimaali, positiivisia ja negatiivisia lukuja ', () => {
-        expect(get(object2, '[1,2,-0.29]')).toBe(-10);
+        expect(get(object2, '[1,1,0,-0.29]')).toBe(-10);
     });
 
     test('null arvon käsittely kun on asetettu default', () => {
