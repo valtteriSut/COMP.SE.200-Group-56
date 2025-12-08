@@ -5,7 +5,7 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "main", "ci-fix", "coveralls-setup", "coveralls"]
+    branches: [ "main", "ci-fix", "coveralls-setup", "coveralls", "eslint-workflow-config"]
   pull_request:
     branches: [ "main" ]
 
@@ -31,15 +31,15 @@ jobs:
     - name: run tests with coverage 
       run: npm test || true
 
-    - name: Check coverage file
-      run: cat coverage/lcov.info
-
     - name: Upload coverage to Coveralls (Parallel Step)
       uses: coverallsapp/github-action@v2
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         flag-name: node-${{ matrix.node-version }}
         parallel: true
+    - name: dependencies vulnerabilities
+      uses: actions/setup-node@v4
+      run: npm audit
 
   finish:
     name: Finalize Coveralls Report
