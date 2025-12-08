@@ -1,10 +1,6 @@
 import map from '../src/map'
 
-function addOne(n) {
-    return n + 1;
-}
-
- function square(n) {
+function square(n) {
    return n * n
 }
 
@@ -12,24 +8,27 @@ function addOne(n) {
 describe("map funktio", () => {
 
     test('Erilaisten numeroiden testaaminen', () => {
-        expect(map([1,-2,0.233], addOne)).toMatchObject([2,-1,1.233]);
+        expect(map([1,-2,0.233], square)).toMatchObject([1,1,0.054289]);
+    });
+    
+    test('null arvon testaaminen', () => {
+        expect(map([null], square)).toMatchObject([0]);
     });
 
-    test('null arvon testaaminen', () => {
-        expect(map([null], addOne)).toMatchObject([1]);
-    });
     test('tyhjän listan testaaminen', () => {
-        expect(map([], addOne)).toMatchObject([]);
+        expect(map([], square)).toMatchObject([]);
     });
+
     test('null arvon testaaminen ei listan sisällä', () => {
-        expect(map(null, addOne)).toMatchObject([]);
+        expect(map(null, square)).toMatchObject([]);
     });
+
     test('String tyypin testaaminen', () => {
-        expect(map(['1', 1], addOne)).toMatchObject([2,2]);
+        expect(map(['2', 2], square)).toMatchObject([4,4]);
     });
 
     test('boolean arvot', () => {
-        expect(map([true, false], addOne)).toMatchObject([2,1]);
+        expect(map([true, false], square)).toMatchObject([1,0]);
     });
 
     test('Normaalit numerot', () => {
