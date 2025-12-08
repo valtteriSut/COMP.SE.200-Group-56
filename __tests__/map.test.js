@@ -8,9 +8,9 @@ function square(n) {
 describe("map funktio", () => {
 
     test('Erilaisten numeroiden testaaminen', () => {
-        expect(map([1,-2,0.233], square)).toMatchObject([1,1,0.054289]);
+        expect(map([1,-2,0.233], square)).toMatchObject([1,4,0.054289]);
     });
-    
+
     test('null arvon testaaminen', () => {
         expect(map([null], square)).toMatchObject([0]);
     });
