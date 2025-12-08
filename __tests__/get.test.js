@@ -1,7 +1,7 @@
 import get from '../src/get'
 
 const object1 = { 'a': [{ 'b': { 'c': [1,4, {'c': 10}] } }] }
-const object2 = { 1:{1:[{'-0.29':-10}, {'0': -10}], 2:[1, {'a': null}]} }
+const object2 = { 1:{1:[{'-0.29':-10}, {'0': -10}], 2:[1, {'a': null}, undefined]} }
 const object3 = { true: [{ false: { null: 3 } }] }
 
 
@@ -28,6 +28,14 @@ describe("get funktio", () => {
 
     test('null arvon käsittely', () => {
         expect(get(object2, '[1, 2, 1, a]')).toBe(undefined);
+    });
+
+    test('undefined arvon käsittely', () => {
+        expect(get(object2, '1.2[2]')).toBe(undefined);
+    });
+
+    test('palauttaa default arvon kun määritelty', () => {
+        expect(get(object2, '[1, 2, 1, a]', 0.329)).toBe(0.329);
     });
 
     test('boolean ja null arvot', () => {
